@@ -1,0 +1,108 @@
+<div class="row">
+  <!-- <div class="col-2"></div> -->
+  <div class="col-3">
+    <div style="margin-right: 15px">
+      <form [formGroup]="miFormulario">
+
+        <div class="header">
+          <h4 class="title">Clasificador Internacional "European Skills Competences and Occupations" (ESCO) </h4>
+        </div>
+        <br>
+
+        <div class="row">
+          <div class="input-group mb-3">
+            <label for="descripcion"><span class="input-group-text">Descripción:</span></label>
+            <input id="descripcion" name="descripcion" class="form-control" formControlName="descripcion"
+              placeholder="Ejm: software">
+          </div>
+        </div>
+
+        <br>
+
+        <div class="content">
+          <!--  <h3> Clasificación a buscar</h3> -->
+          <div class="form-group">
+            <div class="input-group mb-3">
+              <label class="input-group-text" for="inputGroupSelect05">Clasificación:</label>
+              <select class="form-control" id="calificacion" formControlName="clasificacion">
+                <option value="">Seleccione</option>
+                <option value="occupation">Ocupaciones</option>
+                <option value="skill">Competencias</option>
+                <option value="taxonomy">Taxonomia</option>
+              </select>
+            </div>
+          </div>
+
+          <br>
+
+          <div class="row">
+            <!--<div class="col-3">-->
+            <div class="input-group mb-3">
+              <label for="descripcion"><span class="input-group-text">Idioma:</span></label>
+              <select class="form-control col-8" formControlName="languaje">
+                <option value="">Seleccione Idioma </option>
+                <label class="input-group-text" for="inputGroupSelect06">Lenguaje </label>
+                <option *ngFor="let clasificacion of clasificaciones" [value]="clasificacion.key">
+                  {{ clasificacion.key }}
+                </option>
+              </select>
+            </div>
+          </div>
+
+          <br>
+
+          <div class="col">
+            <span class="text-danger"> <em>CANTIDAD TOTAL : {{totalResp}}</em> </span>
+          </div>
+
+          <br>
+
+          <button type="button" class="btn btn-primary" (click)="onDescription()">consultar</button>
+
+
+        </div>
+
+
+
+
+
+
+      </form>
+    </div>
+  </div>
+  <div class="col-6">
+    <h2 class="mt-1">Resultados</h2>
+    <div class="card mt-2">
+      <div class="table-responsive">
+        <table class="table table-centered table-hover mb-0" id="datatable">
+          <thead>
+            <tr>
+              <th style="text-align: center;" scope="col">N°</th>
+              <th class="border-top-0" scope="col">TITULO</th>
+              <th class="border-top-0" scope="col">URI</th>
+              <th class="border-top-0" scope="col">TIPO</th>
+              <th class="border-top-0" scope="col">DESCRIPCIÓN POR LENGUAJE</th>
+            </tr>
+          </thead>
+          <tbody>            
+              <tr *ngFor="let result of resultTable | paginate: { itemsPerPage:12, currentPage: page };let i=index;">
+                <!--  <tr *ngFor="let result of resultTable;let i = index"> -->
+                <td>{{ i + 1 }}</td>
+                <td>{{ result.title }}</td>
+                <td><a href="{{ result.uri }}" target="_blank" rel="noopener noreferrer">{{ result.uri }}</a></td>
+                <td>{{ miFormulario.value.clasificacion }}</td>
+                <td *ngIf="resultTableIdiomas.length<=0;else existente">
+                  NO DEFINIDO AUN
+                </td>
+                <ng-template #existente>
+                  <td>{{resultTableIdiomas[i]}}</td>
+                </ng-template>
+              </tr>            
+          </tbody>
+        </table>
+      </div>
+      <pagination-controls (pageChange)="page=$event" previousLabel="Anterior" nextLabel="Siguiente">
+      </pagination-controls>
+    </div>
+  </div>
+</div>

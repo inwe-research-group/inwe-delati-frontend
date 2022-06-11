@@ -1,0 +1,53 @@
+<!-- Sidebar navbar-inverse fixed-top-->
+
+<nav class="navbar navbar-inverse fixed-top" id="sidebar-wrapper" role="navigation">
+  <ul class="nav sidebar-nav ">
+    <div class="sidebar-header ">
+      <div class="sidebar-brand ">
+        <a [routerLink]="['/panel', 'inicio']">          
+          <img src="/assets/logo.png" alt="" width="48" height="35" class="d-inline-block align-text-top">
+          <a class="text-decoration-none"><h4>delaTI</h4></a>
+        </a>
+        <!-- <a [routerLink]="['/panel', role, 'inicio' ]"><small>{{this.authService.userData.email}}</small> | </a> -->
+        <!-- <button type="button" (click)="logout()" class="btn-sm btn-danger">Cerrar Sesión</button> -->
+      </div>
+    </div>
+    <div>
+      <li><a [routerLink]="['/panel', 'inicio']">
+          <i class="fas fa-home mx-2"></i><span>Inicio</span>
+        </a></li>
+
+      <li class="nav-item dropdown" >
+        <a class="nav-link dropdown-toggle " href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+          aria-expanded="false">
+          Clustering kmeans
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <li> <a [routerLink]="['/panel', 'MetododelCodo' ]">
+              <i class="fab fa-react mx-2 "></i><span>Método del codo</span>
+            </a></li>
+          <li><a [routerLink]="['/panel', 'Clasificacion' ]">
+              <i class="fab fa-react mx-2 "></i><span>Clustering Kmeans</span>
+            </a></li>
+        </ul>
+      </li>
+
+      <li><a href="http://maledpeti-dbscan-frontend.herokuapp.com/" >
+        <i class="fad fa-industry mx-2"></i><span>Clustering DbScan</span>
+        </a>
+      </li>
+
+      <li><a [routerLink]="['/panel', 'esco']">
+          <i class="fad fa-industry mx-2"></i><span>Clasificador ESCO</span>
+        </a>
+      </li>
+
+      <li><a href="http://localhost:4200/assets/dashboards.pdf">
+        <i class="fad fa-industry mx-2"></i><span>Dashboards</span>
+      </a>
+    </li>
+
+    </div>   
+  </ul>
+</nav>
+<!-- /#sidebar-wrapper -->
