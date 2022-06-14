@@ -5,10 +5,10 @@ const path = require('path');
 const app = express();
 
 // Serve only the static files form the dist directory
-app.use(express.static('./dist/js17-ml-frontend'));
+app.use(express.static('./dist/inwe-ml-frontend'));
 
 app.get('/*', (req, res) =>
-    res.sendFile('index.html', {root: 'dist/js17-ml-frontend/'}),
+    res.sendFile('index.html', {root: 'dist/inwe-ml-frontend/'}),
 );
 
 // Start the app by listening on the default Heroku port

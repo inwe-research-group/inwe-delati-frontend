@@ -6,7 +6,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "js17-ml-frontend": {
+    "inwe-ml-frontend": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -23,7 +23,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/js17-ml-frontend",
+            "outputPath": "dist/inwe-ml-frontend",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -75,10 +75,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "js17-ml-frontend:build:production"
+              "browserTarget": "inwe-ml-frontend:build:production"
             },
             "development": {
-              "browserTarget": "js17-ml-frontend:build:development"
+              "browserTarget": "inwe-ml-frontend:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -86,7 +86,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "js17-ml-frontend:build"
+            "browserTarget": "inwe-ml-frontend:build"
           }
         },
         "test": {
@@ -110,5 +110,5 @@
       }
     }
   },
-  "defaultProject": "js17-ml-frontend"
+  "defaultProject": "inwe-ml-frontend"
 }

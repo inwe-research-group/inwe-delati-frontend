@@ -25,7 +25,7 @@ module.exports = function (config) {
       suppressAll: true // removes the duplicated traces
     },
     coverageReporter: {
-      dir: require('path').join(__dirname, './coverage/js17-ml-frontend'),
+      dir: require('path').join(__dirname, './coverage/inwe-ml-frontend'),
       subdir: '.',
       reporters: [
         { type: 'html' },
