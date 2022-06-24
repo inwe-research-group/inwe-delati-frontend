@@ -6,6 +6,8 @@
 /out-tsc
 # Only exists if Bazel was run
 /bazel-out
+.firebaserc
+firebase.json
 
 # dependencies
 /node_modules
@@ -17,6 +19,7 @@ chrome-profiler-events*.json
 
 # IDEs and editors
 /.idea
+/.firebase
 .project
 .classpath
 .c9/
