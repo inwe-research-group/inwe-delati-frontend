@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 })
 export class MachineLearningWekaService {    
   readonly URL = 'http://128.199.1.222:8080';
-  //readonly URL = 'http://localhost:8080';
+  //readonly URL = 'http://127.0.0.1:5001';
   
   constructor(private http: HttpClient) { }
 

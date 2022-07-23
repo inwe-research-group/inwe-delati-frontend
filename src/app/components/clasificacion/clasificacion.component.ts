@@ -35,6 +35,8 @@ export class ClasificacionComponent implements OnInit {
   showResults: boolean;
   showResults_weka: boolean;
   searchCluster = '';
+  selectedDataset: string='';
+  dataset: Array<any> = [];
   constructor(private formbuilder: FormBuilder,
               private machineLearningService:MachineLearningService,
               private machineLearningWekaService:MachineLearningWekaService,
@@ -45,6 +47,10 @@ export class ClasificacionComponent implements OnInit {
       this.showResults_weka = false;
       this.form = this.formbuilder.group({});
       this.page = 1;
+      this.machineLearningService.getDatasets().subscribe((result:any)=>{
+        this.dataset=result;
+        console.log(this.dataset);
+      });
   }
 
   showMore(i:number): void{
@@ -92,8 +98,9 @@ export class ClasificacionComponent implements OnInit {
 
   sendData() {
     this.form = this.formbuilder.group({
-      query: ["select o.htitulo_cat, o.htitulo, w.pagina_web, o.empresa, o.lugar, o.salario, date_part('year',o.fecha_publicacion) as periodo, f_dimPuestoEmpleo(o.id_oferta,7) as funciones, f_dimPuestoEmpleo(o.id_oferta,1) as conocimiento, f_dimPuestoEmpleo(o.id_oferta,3) as habilidades, f_dimPuestoEmpleo(o.id_oferta,2) as competencias, f_dimPuestoEmpleo(o.id_oferta,17) as certificaciones, f_dimPuestoEmpleo(o.id_oferta,5) as beneficio, f_dimPuestoEmpleo(o.id_oferta,11) as formacion from webscraping w inner join oferta o on (w.id_webscraping=o.id_webscraping) where o.id_estado is null;", [Validators.required, Validators.minLength(0)]],      
+      query: ["", [Validators.required, Validators.minLength(0)]],      
       n_clusters: [5, [Validators.required, Validators.min(1)]],
+      dataset: ['', [Validators.required, Validators.minLength(0)]],
       init: ['', [Validators.required, Validators.minLength(0)]],
       max_iter: [10, [Validators.required, Validators.min(1)]],
       n_init: [1, [Validators.required, Validators.min(0)]],
@@ -317,5 +324,33 @@ export class ClasificacionComponent implements OnInit {
         text: '!Ocurrió un error WEKA-KMEANS!',
       })
     }); 
+  }
+
+  onChangeDataset(){
+    
+    for (let i = 0; i < this.dataset.length; i++) {
+      //queryLine[0]:id_consulta
+      //queryLine[1]:descripcion
+      //queryLine[2]:sql_consulta
+      let queryLine=this.dataset[i];
+      if(queryLine[0]==Number(this.selectedDataset)+1){
+        console.log(queryLine)
+        console.log(this.selectedDataset)
+        this.form = this.formbuilder.group({
+          query: [queryLine[2], [Validators.required, Validators.minLength(0)]],      
+          n_clusters: [5, [Validators.required, Validators.min(1)]],
+          dataset: [this.selectedDataset, [Validators.required, Validators.minLength(0)]],
+          init: ['', [Validators.required, Validators.minLength(0)]],
+          max_iter: [10, [Validators.required, Validators.min(1)]],
+          n_init: [1, [Validators.required, Validators.min(0)]],
+          random_state: [0, [Validators.required, Validators.min(0)]],
+          axis_x: [0, [ Validators.min(0)]],
+          axis_y: [1, [ Validators.min(0)]],      
+        });
+        
+        break;
+      }
+      
+    }
   }
 }

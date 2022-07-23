@@ -11,6 +11,12 @@
       <div *ngIf="showForm">
         <form [formGroup]="form" (ngSubmit)="runClasificacion()">
           <div class="input-group mb-3">
+            <label class="input-group-text" for="dataset">Dataset</label>
+            <select class="form-select" id="dataset" formControlName="dataset"   [(ngModel)]="selectedDataset" #item (ngModelChange)="onChangeDataset()">
+              <option [value]="i" *ngFor="let item of dataset; let i = index">{{item[1]}}</option>
+            </select>
+          </div>
+          <div class="input-group mb-3">
             <span class="input-group-text">Query</span>
             <textarea (keyup)="autoGrowTextZone($event)" class="form-control" placeholder="Ej: SELECT * FROM ..."
               formControlName="query" style="height: 314px;"></textarea>
