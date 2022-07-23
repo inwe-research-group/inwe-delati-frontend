@@ -334,8 +334,6 @@ export class ClasificacionComponent implements OnInit {
       //queryLine[2]:sql_consulta
       let queryLine=this.dataset[i];
       if(queryLine[0]==Number(this.selectedDataset)+1){
-        console.log(queryLine)
-        console.log(this.selectedDataset)
         this.form = this.formbuilder.group({
           query: [queryLine[2], [Validators.required, Validators.minLength(0)]],      
           n_clusters: [5, [Validators.required, Validators.min(1)]],
